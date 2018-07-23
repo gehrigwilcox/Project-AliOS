@@ -1,0 +1,20 @@
+Process IDs are re-used as pointers to a location that is used in a
+  virtual memory address
+
+When a process starts, allocate all static memory and update page table to
+  properly report how much free space is available.
+
+When a process dynamically allocates memory, first see if any reserved memory
+  locations can fit the data, if it can, use that memory and update the process
+  memory record to properly report the amount of free memory this location has,
+  if if cant find an already reserved memory location, figure out how much to
+  allocate (could be the size that was requested, but if I am allocating a lot,
+  this wastes cycles. If I allocate too much, I waste memory. How do I
+  determine how much memory to allocate?)
+
+  Then, I record the memory location to the processes memory record, along with
+    how much free space that memory location has
+
+  When free() is called, free the memory, and update the process memory record,
+    and the page table. If the page is completely un-used, remove the page from
+    the process memory record

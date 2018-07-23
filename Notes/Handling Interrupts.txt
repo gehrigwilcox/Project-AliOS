@@ -1,0 +1,26 @@
+Registers:
+  Page 75-272
+
+
+AArch64 Security Model:
+  Page 66
+
+
+
+
+
+
+Handling Interrupts:
+
+  Processor stops execution and jumps to Vector Table to figure out where to go
+
+  The entry that is read from the Vector Table is determined by HCR_EL2 and SCR_EL3
+    These registers determine where the interrupt should be handled
+
+  Processor then reads the Interrupt Acknowledge Register to get the Interrupt ID
+    (this also causes the GIC to know that we are currently working on the Interrupt)
+
+  Once finished handling the interrupt, the same Interrupt ID that was read from the Interrupt Acknowledge Register
+    will be written to the End of Interrupt register in the CPU Interface Block indicating the end of interrupt processing
+
+    Interrupt ID 1023 means that there are no more interrupts to be handled

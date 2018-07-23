@@ -1,0 +1,15 @@
+Interrupt List
+
+Launch a process
+
+Request another page
+
+Draw on screen
+
+Open File
+
+Close File
+
+Remove page
+
+IPC

@@ -1,0 +1,43 @@
+ARMv8-A MMU supports 3 granules:
+
+  4KB
+  16KB
+  64KB
+  
+  
+Pros/Cons:
+
+  Larger granules mean a smaller translation table (less space taken up in memory), faster translation
+    But larger granules also means more memory wasted if it isn't all used, and when loading a page from storage into memory it takes longer if the page is large
+    
+  Smaller granules mean less memory wasted if it isn't all used and when loading a page from storage into memory, it is faster if the page is small
+    But smaller granules also means a larger translation table (more space taken up in memory) and a slower translation
+    
+    
+  Solution:
+    
+    I allocate the smallest size that will fit all requested data. This way, I won't waste space on un-used reserved memory, and I also keep the smallest possible translation table so that the translation table takes up the smallest amount of memory and has a faster translation. It also allows the pages to be loaded from storage as fast as possible.
+    
+    
+    I also want to keep data that is used at the same time grouped together (if a and b are commonly requested together, put them close to each other in memory) This way, I limit the amount of page loading.
+    
+      How do I keep track of how often things are requested together? And at what point is the requests significant enough to group them together? Where do I store them?
+    
+    
+    Questions:
+    
+        How do I determine how large of a memory block to allocate?
+          
+            I could just allocate the requested amount, but I could waste cycles on allocating memory if I am allocating multiple times. I could allocate more than requested, but how do I determine how much to allocate? What factors determine how much to allocate? Would the program that determines the allocation size save enough cycles to justify it?
+            
+         
+         
+         Because I have to check the memory permissions, ideally I would like a quick and efficent way of checking permissions. The method I thought of is to use the process ID as part of the memory address. This ensures that the memory address belongs to the given process
+         
+         Pros: Fast, efficent, intuitive, secure memory management
+         Cons: Limited memory, limited processes
+         
+         
+         Solutions to cons:
+            If memory or process IDs become scarce, processes gain a memory table. This memory table lists off all the memory addresses the process owns. This allows a process ID to be re-used, and it also allows memory addresses to be broken up.
+            This solution allows speed when memory and process IDs are abundant, but it becomes slower if they become scarce

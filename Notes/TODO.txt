@@ -1,0 +1,6 @@
+Find a list of all processor states
+Find a list of all permissions of all processor states
+Find a list of all registers in all processor states
+Find documentation on the Exception Vector Table
+Find documentation on communicating with the Generic Interrupt Controller (GIC)
+Find documentation on the Timer
