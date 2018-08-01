@@ -1,0 +1,34 @@
+OS Boot Process
+
+Set up environment for C
+
+  If machine has an MMU, enable and configure MMU
+
+Jump to C
+
+Read from config file what to load next
+
+
+
+Standard C libraries are provided
+
+
+Executables provided:
+
+  USB Stack
+  Shell
+  ls
+  cd
+  top
+  mkdir
+  rmdir
+  touch
+  nano
+  wget
+
+
+Kernel functions:
+
+  Draw to screen
+  Process switching
+  Inter-Process communication

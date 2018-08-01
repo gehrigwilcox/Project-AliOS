@@ -35,11 +35,13 @@ TODO: Find an actual location for the PID pointer table
 */
 typedef struct {
 
-  uint32_t PID; //32 bit process id, might even change it to 16 bit process id
+  uint16_t PID; //16 bit process id maximum, because that is the highest ASID will go
 
 
 } process_t;
 
+
+extern void setASID(uint16_t asid);
 
 process_t createProcess(size_t executableSize, *uint executableLocation);
 
