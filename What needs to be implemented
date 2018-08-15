@@ -1,0 +1,13 @@
+What needs to be implemented:
+
+  Interrupt Vectors
+  Switching Processes:
+    Save current processor state:
+      Where does it get saved to?
+        It could be saved into the process struct
+    Find next process to run
+    Restore that processor state
+    Set timer interrupt
+  Kernel Translation Table
+  Used Memory Table:
+    Keep track of used and un-used memory blocks

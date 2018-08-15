@@ -14,28 +14,33 @@
 
 
 
-#define MAX_PID 9999
-
-/*
-This is the offset that is added to the PID to retrieve the pointer
-to the processes virtual memory address
-
-So, to get a virtual address, first get the PID_POINTER_OFFSET, add it to the
-  PID, the data at that location is the virtual address for that process
-TODO: Find an actual location for the PID pointer table
-*/
-#define PID_POINTER_OFFSET 0xDEADBEEF
+#define MAX_PID 0xFFFF
 
 
 /*
 
-  How do I remember what PIDs are reserved?
-  What also needs to be stored?
+  Should be stored in location that only kernel can access
 
 */
 typedef struct {
 
-  uint16_t PID; //16 bit process id maximum, because that is the highest ASID will go
+  /*
+    16 bit process id maximum, because that is the highest ASID will go
+    Although, the ASID and the PID don't have to be the same
+
+    This is so you can directly interface with each process
+  */
+  uint16_t PID;
+
+  //Process state
+  int* stackPointer;
+
+  //Translation Table
+  pageTable_t* pageTable;
+
+  //Make processes an indexable array
+  process_t* previousProcess;
+  process_t* nextProcess;
 
 
 } process_t;

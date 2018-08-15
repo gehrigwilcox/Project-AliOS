@@ -15,6 +15,12 @@
 
 
 
+typedef struct {
+  
+} pageTable_t;
+
+
+
 
 void setPageTranslation(int virtualAddress, void* physicalAddress);
 

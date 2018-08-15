@@ -32,5 +32,11 @@ void* malloc(size_t size){
 }
 
 void free(void *ptr){
+  /*
+    Free the memory.
 
+    If this results in the whole block being empty, remove the block from the
+      Page table, and free the block
+
+  */
 }
