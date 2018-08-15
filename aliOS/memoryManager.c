@@ -9,6 +9,7 @@
 
 #include "memoryManager.h"
 
+/************* Involves Freeing Blocks *************/
 void freeMemoryBlock(void* address){
   //Check to make sure this is a valid address
   if(address > memoryTableSize) return;
@@ -39,12 +40,14 @@ void freeMemoryBlock(void* address){
   memoryTableBinarySearch(topMemoryHeader);
 }
 
-
 //Given two memory table entries, it will combine both blocks into one singular block
 uint8_t combineBlocks(memoryHeaderEntry_t* topHeader, memoryHeaderEntry_t* bottomHeader){
 
   if(isMemoryHeader(topHeader) && isMemoryHeader(bottomHeader) &&
     topHeader->isFree && bottomHeader->isFree){
+
+      removeFromArray(topHeader);
+      removeFromArray(bottomHeader);
 
     //Add bottomHeaders size to topHeaders size
     topHeader->chunkSize += bottomHeader->chunkSize;
@@ -64,11 +67,11 @@ uint8_t combineBlocks(memoryHeaderEntry_t* topHeader, memoryHeaderEntry_t* botto
   return 0;
 }
 
-int isMemoryHeader(memoryHeaderEntry_t* memoryHeader){
-  return memoryHeader >= memoryTableOffset &&
-  memoryHeader + memoryHeader->chunkSize * HEADER_SIZE <= memoryTableOffset + memoryTableSize;
-}
 
+/************* Involves Reserving Blocks *************/
+
+
+/************* Involves Re-Locating Blocks *************/
 
 //Finds location in table to insert given memoryHeader
 void memoryTableBinarySearch(memoryHeaderEntry_t* memoryHeader){
@@ -119,6 +122,13 @@ void removeFromArray(memoryHeaderEntry_t* memoryHeader){
       (indexed + indexed->chunkSize)->nextMemoryEntry = memoryHeader->nextMemoryEntry;
     }
   }
+}
+
+
+/************* Helper Functions *************/
+int isMemoryHeader(memoryHeaderEntry_t* memoryHeader){
+  return memoryHeader >= memoryTableOffset &&
+  memoryHeader + memoryHeader->chunkSize * HEADER_SIZE <= memoryTableOffset + memoryTableSize;
 }
 
 //Returns the memoryHeaderEntry for a given index
