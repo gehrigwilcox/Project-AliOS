@@ -11,7 +11,7 @@
 
 /************* Definitions *************/
 //TODO: Define memoryTableOffset
-//TODO: Define memoryTableSize
+//TODO: Define memoryTableSize, will be Processor dependent/MMU dependent
 #define HEADER_SIZE sizeof(memoryHeaderEntry_t)
 
 /************* Generic Variables *************/
@@ -37,7 +37,9 @@ void freeMemoryBlock(void* address);
 uint8_t combineBlocks(memoryHeaderEntry_t* topHeader, memoryHeaderEntry_t* bottomHeader);
 
 /************* Involves Reserving Blocks *************/
-
+void* allocateMemoryBlock(int size);
+memoryHeaderEntry_t* findBlock(int size);
+void splitBlock(memoryHeaderEntry_t* block, int size);
 
 /************* Involves Re-Locating Blocks *************/
 void memoryTableBinarySearch(memoryHeaderEntry_t* memoryHeader);

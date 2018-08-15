@@ -70,6 +70,9 @@ uint8_t combineBlocks(memoryHeaderEntry_t* topHeader, memoryHeaderEntry_t* botto
 
 /************* Involves Reserving Blocks *************/
 
+//TODO: void* allocateMemoryBlock(int size)
+//TODO: memoryHeaderEntry_t* findBlock(int size)
+//TODO: void splitBlock(memoryHeaderEntry_t* block, int size)
 
 /************* Involves Re-Locating Blocks *************/
 
