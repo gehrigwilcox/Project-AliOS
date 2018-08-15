@@ -65,7 +65,7 @@ uint8_t combineBlocks(memoryHeaderEntry_t* topHeader, memoryHeaderEntry_t* botto
 }
 
 int isMemoryHeader(memoryHeaderEntry_t* memoryHeader){
-  return memoryHeader >= memoryTableOffset
+  return memoryHeader >= memoryTableOffset &&
   memoryHeader + memoryHeader->chunkSize * HEADER_SIZE <= memoryTableOffset + memoryTableSize;
 }
 
