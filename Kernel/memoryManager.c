@@ -10,17 +10,17 @@
 #include "memoryManager.h"
 
 
-void* freeMemoryLinkedList; //TODO: Point to first memory block
-void* lastMemoryInList; //TODO: Point to last memory block
+void* freeMemoryLinkedList; //TODO: Point to first memory block id:5
+void* lastMemoryInList; //TODO: Point to last memory block id:0
 
 
-//TODO: Init by setting up linked list, each memory block needs to have the first byte point to the next memory block
-//TODO: Create a function to create virtual memory
+//TODO: Init by setting up linked list, each memory block needs to have the first byte point to the next memory block id:3
+//TODO: Create a function to create virtual memory id:8
 
 void freeMemoryBlock(void* address){
 
 
-  //TODO: Check to see if address is virtual memory, if it is, check to see if I need to exist or if I can be freed
+  //TODO: Check to see if address is virtual memory, if it is, check to see if I need to exist or if I can be freed id:10
 
   //Add the memory to the linked list
   *lastMemoryInList = address;
@@ -61,5 +61,5 @@ void allocateMemoryBlock(int size){
   //Set the head of the linked list to the new head
   freeMemoryLinkedList = blocks[size];
 
-  //TODO: Fill out page table
+  //TODO: Fill out page table id:6
 }
